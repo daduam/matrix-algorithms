@@ -12,7 +12,7 @@ function x = naive_gaussian(A, b)
     b(i:dim,:) += m * b(i-1,:);
   endfor
   
-  % backward substitution
+  % back substitution
   x(dim,:) = b(dim,:) / A(dim,dim);
   for i = dim:-1:1
     x(i,:) = b(i,:) - A(i,i+1:dim) * x(i+1:dim,:);

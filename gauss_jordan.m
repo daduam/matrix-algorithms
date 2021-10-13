@@ -10,18 +10,18 @@ function x = gauss_jordan(A, b)
         [A(1,:), A(i,:)] = deal(A(i,:), A(1,:));
       endif
     endfor
-    
+    % zero out elements below major diagonal
     for i = j+1:dim
       A(i,:) -= A(j,:) * (A(i,j) / A(j,j));
     endfor
   endfor
-  
+  % zero out elements above major diagonal
   for j = dim:-1:2
     for i = j-1:-1:1
       A(i,:) -= A(j,:) * (A(i,j) / A(j,j));
     endfor
   endfor
-  
+  % make elements on major diagonal unity
   for i = 1:dim
     A(i,:) /= A(i,i);
   endfor

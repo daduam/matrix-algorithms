@@ -3,7 +3,7 @@
 % Solve Ax=b using Gaussian elimination without pivoting
 function x = naive_gaussian(A, b)
   dim = length(A);
-  x = zeros(dim,1)
+  x = zeros(dim,1);
   
   % forward elimination
   for i = 2:dim
@@ -13,12 +13,9 @@ function x = naive_gaussian(A, b)
   endfor
   
   % backward substitution
+  x(dim,:) = b(dim,:) / A(dim,dim);
   for i = dim:-1:1
-    if i == dim
-      x(i,:) = b(i,:) / A(i,i);
-    else
-      x(i,:) = b(i,:) - A(i,i+1:dim) * x(i+1:dim,:);
-      x(i,:) /= A(i,i);
-    endif
+    x(i,:) = b(i,:) - A(i,i+1:dim) * x(i+1:dim,:);
+    x(i,:) /= A(i,i);
   endfor
 endfunction
